@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Styled Form</title>
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link rel="stylesheet" href="static/css/select2.min.css">
+    <link rel="stylesheet" href="bugStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <button id="bugReportButton" type="button" class="btn btn-primary">
+            Launch demo modal
+        </button>
+    </div>
+
+    <div class="modal fade" id="bugReportModal" tabindex="-1" aria-labelledby="bugReportModalLabel" aria-hidden="true">
+        <form id="bugReportForm" method="POST" enctype="multipart/form-data">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bugModal-modal-content">
+                    <div class="modal-header bugModal-modal-header">
+                        <h1 class="modal-title fs-5" id="bugReportModalLabel">Submit a Report</h1>
+                        <button type="button" class="btn-close closeBugReportModal" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-4">
+                                <label for="bugReportFullUrl">URL:</label>
+                                <input id="bugReportFullUrl" name="bugReportFullUrl" type="text" class="form-control"/>
+                            </div>
+                            <div class="col-md-1 text-center">
+                                <span style="font-size: 24px; font-weight: bold;">-</span>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="bugReportSystem">Система:</label>
+                                <input id="bugReportSystem" name="bugReportSystem" type="text" class="form-control"/>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="bugReportUrgency">Срочность:</label>
+                                <select id="bugReportUrgency" name="bugReportUrgency" class="js-example-basic-single form-control" aria-label="Default select example">
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 2 ряд: Текст ошибки, Шаги выполнения -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="bugReportErrorMsg">Текст ошибки:</label>
+                                <textarea id="bugReportErrorMsg" name="bugReportErrorMsg" class="form-control"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bugReportDopInfo">Дополнительная информация:</label>
+                                <textarea id="bugReportDopInfo" name="bugReportDopInfo" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 3 ряд: Дополнительная информация -->
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <label for="bugReportSteps">Шаги выполнения:</label>
+                                <textarea id="bugReportSteps" name="bugReportSteps" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="container mt-4">
+                            <label for="bugReportInputFile" class="form-label">Загрузите файлы:</label>
+                            <div class="file-upload-area text-center">
+                                <label for="bugReportInputFile" class="btn btn-primary">Выбрать фото</label>
+                                <input id="bugReportInputFile" type="file" multiple class="d-none">
+                                <div class="bugReportDropzone mt-3" id="bugReportDropzone">
+                                    <p class="text-muted">Перетащите сюда файлы или вставьте их из буфера обмена</p>
+                                </div>
+                            </div>
+                            <div class="preview-area mt-4" id="preview-area">
+                                <h5>Миниатюры</h5>
+                                <div class="preview-thumbnails" id="preview-thumbnails"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer bugModal-modal-footer">
+                        <button id="closeBugReportModal" type="button" class="btn btn-secondary closeBugReportModal" data-bs-dismiss="modal">Close</button>
+                        <button id="submitBugReportBtn" type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+<!-- Модальное окно для просмотра изображения -->
+<div data-backdrop="false" class="modal bugModal-image-full fade" id="bugPreviewImageModal" tabindex="-1" aria-labelledby="bugPreviewImageModalLabel" aria-hidden="true" style="position: absolute; z-index: 2000;">
+    <div  style="z-index: 2010;" class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bugModal-preview-img-modal-content">
+            <div class="modal-body bugModal-preview-img-modal-body">
+                <img id="bug-full-image" src="" alt="Full Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--&lt;!&ndash; Оверлей для показа полного изображения &ndash;&gt;-->
+<!--<div style="position:absolute; z-index: 2010;" id="image-overlay" class="image-overlay">-->
+<!--    <img id="overlay-image" src="" alt="Full Image" class="overlay-image">-->
+<!--</div>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+<script src="static/js/select2.min.js"></script>
+<script src="postForm.js"></script>
+<script src="debugButton.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<!--<script src="loaderScript.js"></script>-->
+
+</body>
+</html>

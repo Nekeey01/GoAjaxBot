@@ -1,0 +1,235 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+}
+
+.container {
+    max-width: 600px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+}
+
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.btn-primary {
+    background-color: #4a90e2;
+    border-color: #4a90e2;
+    border-radius: 6px;
+}
+
+.btn-secondary {
+    border-radius: 6px;
+}
+
+/* Закрытие модалки */
+.closeBugReportModal {
+    color: white;
+}
+
+/* Кнопка вызова баг репорта */
+#bugButton {
+    background-color: #4a90e2;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+/*.file-upload-area {*/
+/*    border: 2px dashed #6c757d;*/
+/*    padding: 20px;*/
+/*    border-radius: 10px;*/
+/*    position: relative;*/
+/*}*/
+
+/* Зона загрузки файла */
+.file-upload-area {
+    padding: 20px;
+    border: 2px dashed #4a90e2;
+    border-radius: 12px;
+    background-color: #f8f9fa;
+}
+
+.file-upload-area p {
+    color: #6c757d;
+}
+
+
+/*.dropzone {*/
+/*    padding: 20px;*/
+/*    border: 2px dashed #ffffff;*/
+/*    border-radius: 10px;*/
+/*    background-color: #2d2d31;*/
+/*    cursor: pointer;*/
+/*    min-height: 150px;*/
+/*}*/
+
+.dropzone p {
+    margin: 0;
+}
+
+/*.preview-area {*/
+/*    margin-top: 20px;*/
+/*}*/
+
+
+/* Стили для миниатюр */
+.preview-area {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.preview-thumbnails img {
+    max-width: 100px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.preview-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.thumbnail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    text-align: center;
+    position: relative;
+}
+
+.thumbnail-container img,
+.thumbnail-container .file-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+}
+
+.thumbnail-container img:hover,
+.thumbnail-container .file-icon:hover {
+    /*border-color: #ffffff;*/
+}
+
+.file-icon {
+    color: #ccc;
+    font-size: 50px;
+}
+
+
+/* Стили для текста под миниатюрами */
+.thumbnail-container p {
+    margin-top: 5px;
+    font-size: 0.85em;
+    /*color: #ccc;*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.thumbnail-container p:hover {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    background-color: #444; /* Добавляем фон при наведении */
+    color: white;
+    bottom: -30px;
+    z-index: 10;
+    width: auto;
+    max-width: none; /* Убираем ограничение по ширине */
+    border: 1px solid #fff;
+}
+
+
+/* Крестик для удаления файла */
+.delete-icon {
+    position: absolute;
+    top: -29px;
+    right: -7px;
+    cursor: pointer;
+    font-size: 40px;
+    color: red; /* Change color as needed */
+}
+
+
+
+
+/* Стили для модального окна */
+.modal-lg {
+    max-width: 800px; /* Установка максимальной ширины модального окна */
+}
+
+.bugModal-modal-content {
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.bugModal-modal-header {
+    background-color: #4a90e2;
+    color: white;
+    border-bottom: none;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.bugModal-modal-footer {
+    border-top: none;
+}
+
+
+/*Стили для модального окна полного изображения*/
+.bugModal-preview-img-modal-content {
+    background-color: transparent; /* Убираем фон */
+    border: none; /* Убираем границы */
+    box-shadow: none; /* Убираем тени */
+
+}
+
+.bugModal-preview-img-modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+#full-image {
+    max-width: 100%;
+    max-height: 100vh; /* Ограничиваем высоту */
+    object-fit: contain; /* Изображение не растягивается и сохраняет пропорции */
+}
+
+.bugModal-preview-img-modal-footer {
+    display: none; /* Убираем футер с кнопкой закрытия */
+}
